@@ -24,6 +24,7 @@
             <div class="form-group row">
                 <label for="link" class="col-md-2 col-form-label text-md-right">{{ __('link') }}</label>
                 <input id="link" type="url" class="form-control col-md-8" name="link" required>
+                <input id="userId" type="hidden" name="userId" value="{{auth::id()}}">
             </div>
 
             <div class="form-group row">

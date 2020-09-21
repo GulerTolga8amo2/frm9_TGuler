@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 class WishesController extends Controller {
 
     public function create(Request $request) {
+//        dd(Request('fileUpload') . public_path('images'));
+//        $request->image->move(public_path('images'), $request->all('fileUpload'));
+
         Wishlist::create($request->all());
         return redirect('/manage/wishlist');
     }
@@ -28,9 +31,11 @@ class WishesController extends Controller {
     }
 
     public function show() {
-        if (!empty(request('userId'))) {
-            $wish = Wishlist::where('id', request('id'))->where('userId', request('userId'))->first();
-            return view('/manage/edit', ['wish' => $wish]);
+        if (!empty(auth::id())) {
+            if (!empty(request('userId'))) {
+                $wish = Wishlist::where('id', request('id'))->where('userId', request('userId'))->first();
+                return view('/manage/edit', ['wish' => $wish]);
+            }
         }
         return redirect('/manage/edit');
     }

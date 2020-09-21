@@ -12,6 +12,7 @@ class Wishlist extends Model
         'description',
         'price',
         'link',
+        'userId'
     ];
 
 }
